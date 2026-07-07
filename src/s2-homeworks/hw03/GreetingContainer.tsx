@@ -1,6 +1,8 @@
-import React, { ChangeEvent, Dispatch, KeyboardEvent, SetStateAction, useState } from 'react'
+import React, {ChangeEvent, Dispatch, MouseEvent, FocusEvent, KeyboardEvent, SetStateAction, useState} from 'react'
 import Greeting from './Greeting'
 import { UserType } from './HW3'
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 type GreetingContainerPropsType = {
     users: UserType[] // need to fix any
@@ -14,7 +16,7 @@ export const pureAddUser = (name: string, setError: Dispatch<SetStateAction<stri
 export const pureOnBlur = (name: string, setError: Dispatch<SetStateAction<string>>) => { // если имя пустое - показать ошибку
 }
 
-export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: () => void) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: (e: MouseEvent<HTMLButtonElement>) => void) => { // если нажата кнопка Enter - добавить
 }
 
 // более простой и понятный для новичков
@@ -34,11 +36,12 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
 
         error && setError('')
     }
-    const addUser = () => {
+    const addUser = (e: MouseEvent<HTMLButtonElement>) => {
         pureAddUser(name, setError, setName, addUserCallback)
+        alert('asd')
     }
 
-    const onBlur = () => {
+    const onBlur = (e: FocusEvent<HTMLInputElement>) => {
         pureOnBlur(name, setError)
     }
 

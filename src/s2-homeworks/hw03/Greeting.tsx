@@ -1,15 +1,15 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react'
+import React, {ChangeEvent, MouseEvent, FocusEvent, KeyboardEvent} from 'react'
 import s from './Greeting.module.css'
 
 type GreetingPropsType = {
     name: string // need to fix any
     setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void // need to fix any
-    addUser: () => void // need to fix any
-    onBlur: () => void // need to fix any
+    addUser: (e: MouseEvent<HTMLButtonElement>) => void // need to fix any
+    onBlur: (e: FocusEvent<HTMLInputElement>) => void // need to fix any
     onEnter: (e: KeyboardEvent<HTMLInputElement>) => void // need to fix any
     error: string // need to fix any
-    totalUsers: any // need to fix any
-    lastUserName?: any // need to fix any
+    totalUsers: number // need to fix any
+    lastUserName?: string // need to fix any
 }
 
 // презентационная компонента (для верстальщика)
@@ -55,7 +55,8 @@ const Greeting: React.FC<GreetingPropsType> = (
                     id={'hw3-button'}
                     onClick={addUser}
                     className={s.button}
-                    disabled={!name.trim()}
+                    // disabled={!name.trim()}
+                    disabled={false}
                 >
                     add
                 </button>
