@@ -1,20 +1,22 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
+import React, {ChangeEvent, Dispatch, MouseEvent, FocusEvent, KeyboardEvent, SetStateAction, useState} from 'react'
 import Greeting from './Greeting'
 import { UserType } from './HW3'
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 type GreetingContainerPropsType = {
-    users: any // need to fix any
-    addUserCallback: any // need to fix any
+    users: UserType[] // need to fix any
+    addUserCallback: (name: string) => void // need to fix any
 }
 
-export const pureAddUser = (name: any, setError: any, setName: any, addUserCallback: any) => {
+export const pureAddUser = (name: string, setError: Dispatch<SetStateAction<string>> , setName: Dispatch<SetStateAction<string>>, addUserCallback: (name: string) => void) => {
     // если имя пустое - показать ошибку, иначе - добавить юзера и очистить инпут
 }
 
-export const pureOnBlur = (name: any, setError: any) => { // если имя пустое - показать ошибку
+export const pureOnBlur = (name: string, setError: Dispatch<SetStateAction<string>>) => { // если имя пустое - показать ошибку
 }
 
-export const pureOnEnter = (e: any, addUser: any) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: (e: MouseEvent<HTMLButtonElement>) => void) => { // если нажата кнопка Enter - добавить
 }
 
 // более простой и понятный для новичков
@@ -26,23 +28,24 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     addUserCallback,
 }) => {
     // деструктуризация пропсов
-    const [name, setName] = useState<any>('') // need to fix any
-    const [error, setError] = useState<any>('') // need to fix any
+    const [name, setName] = useState<string>('') // need to fix any
+    const [error, setError] = useState<string>('') // need to fix any
 
-    const setNameCallback = (e: any) => { // need to fix any
+    const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => { // need to fix any
         setName('some name') // need to fix
 
         error && setError('')
     }
-    const addUser = () => {
+    const addUser = (e: MouseEvent<HTMLButtonElement>) => {
         pureAddUser(name, setError, setName, addUserCallback)
+        alert('asd')
     }
 
-    const onBlur = () => {
+    const onBlur = (e: FocusEvent<HTMLInputElement>) => {
         pureOnBlur(name, setError)
     }
 
-    const onEnter = (e: any) => {
+    const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
         pureOnEnter(e, addUser)
     }
 
