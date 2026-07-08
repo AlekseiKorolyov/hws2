@@ -4,7 +4,7 @@ import s from './Greeting.module.css'
 type GreetingPropsType = {
     name: string // need to fix any
     setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void // need to fix any
-    addUser: (e: MouseEvent<HTMLButtonElement>) => void // need to fix any
+    addUser: () => void // need to fix any
     onBlur: (e: FocusEvent<HTMLInputElement>) => void // need to fix any
     onEnter: (e: KeyboardEvent<HTMLInputElement>) => void // need to fix any
     error: string // need to fix any
@@ -25,7 +25,7 @@ const Greeting: React.FC<GreetingPropsType> = (
         lastUserName,
     } // деструктуризация пропсов
 ) => {
-    const inputClass = s.errorInput // need to fix with (?:)
+    const inputClass = error ? s.errorInput : s.input // need to fix with (?:)
 
     return (
         <div id={'hw3-form'} className={s.greetingForm}>
@@ -55,8 +55,7 @@ const Greeting: React.FC<GreetingPropsType> = (
                     id={'hw3-button'}
                     onClick={addUser}
                     className={s.button}
-                    // disabled={!name.trim()}
-                    disabled={false}
+                    disabled={!name.trim()}
                 >
                     add
                 </button>

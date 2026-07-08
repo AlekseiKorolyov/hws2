@@ -1,8 +1,7 @@
-import React, {ChangeEvent, Dispatch, MouseEvent, FocusEvent, KeyboardEvent, SetStateAction, useState} from 'react'
+import React, {ChangeEvent, Dispatch, FocusEvent, KeyboardEvent, SetStateAction, useState} from "react"
 import Greeting from './Greeting'
 import { UserType } from './HW3'
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+
 
 type GreetingContainerPropsType = {
     users: UserType[] // need to fix any
@@ -11,12 +10,24 @@ type GreetingContainerPropsType = {
 
 export const pureAddUser = (name: string, setError: Dispatch<SetStateAction<string>> , setName: Dispatch<SetStateAction<string>>, addUserCallback: (name: string) => void) => {
     // если имя пустое - показать ошибку, иначе - добавить юзера и очистить инпут
+    if (name.trim() === '') {
+        setError('Ошибка! Введите имя!')
+    } else {
+        addUserCallback(name)
+        setName('')
+    }
 }
 
 export const pureOnBlur = (name: string, setError: Dispatch<SetStateAction<string>>) => { // если имя пустое - показать ошибку
+    if (name.trim() === '') {
+        setError('Ошибка! Введите имя!')
+    }
 }
 
-export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: (e: MouseEvent<HTMLButtonElement>) => void) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent<HTMLInputElement>, addUser: () => void) => { // если нажата кнопка Enter - добавить
+    if (e.key === 'Enter') {
+        addUser()
+    }
 }
 
 // более простой и понятный для новичков
@@ -32,13 +43,12 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
     const [error, setError] = useState<string>('') // need to fix any
 
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => { // need to fix any
-        setName('some name') // need to fix
+        setName(e.currentTarget.value) // need to fix
 
         error && setError('')
     }
-    const addUser = (e: MouseEvent<HTMLButtonElement>) => {
+    const addUser = () => {
         pureAddUser(name, setError, setName, addUserCallback)
-        alert('asd')
     }
 
     const onBlur = (e: FocusEvent<HTMLInputElement>) => {
@@ -49,8 +59,8 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
         pureOnEnter(e, addUser)
     }
 
-    const totalUsers = 0 // need to fix
-    const lastUserName = 'some name' // need to fix
+    const totalUsers = users.length // need to fix
+    const lastUserName = users.length > 0 ? users[users.length - 1].name : '' // need to fix
 
     return (
         <Greeting
