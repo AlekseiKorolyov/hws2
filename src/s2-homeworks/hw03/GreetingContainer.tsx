@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Dispatch, FocusEvent, KeyboardEvent, SetStateAction, useState} from "react"
+import React, {ChangeEvent, Dispatch, KeyboardEvent, SetStateAction, useState} from "react"
 import Greeting from './Greeting'
 import { UserType } from './HW3'
 
@@ -51,7 +51,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
         pureAddUser(name, setError, setName, addUserCallback)
     }
 
-    const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const onBlur = () => {
         pureOnBlur(name, setError)
     }
 
