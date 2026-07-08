@@ -3,9 +3,20 @@
 }
 
 .hw {
-
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .hwTitle {
-
+    font-family: sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #f4f5f9;
+    padding-bottom: 8px;
 }
