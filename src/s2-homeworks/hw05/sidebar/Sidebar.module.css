@@ -28,13 +28,10 @@
 .nav a {
     text-decoration: none;
     color: #000000;
-    font-family: Montserrat;
     font-weight: 600;
-    font-style: SemiBold;
     font-size: 22px;
-    leading-trim: NONE;
     line-height: 100%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 }
 
 .nav a:hover {

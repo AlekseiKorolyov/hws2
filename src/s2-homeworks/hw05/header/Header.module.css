@@ -5,19 +5,20 @@
 
 .header {
     width: 100%;
+    padding: 0 50px;
     height: 60px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .header h1 {
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-style: SemiBold;
     font-size: 24px;
-    leading-trim: NONE;
     line-height: 100%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
 
 }
