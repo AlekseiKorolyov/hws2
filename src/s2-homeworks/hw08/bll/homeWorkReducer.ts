@@ -18,5 +18,6 @@ export const homeWorkReducer = (state: UserType[], action: ActionType): any => {
         }
         default:
             return state
+
     }
 }
